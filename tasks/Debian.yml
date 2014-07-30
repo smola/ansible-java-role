@@ -1,0 +1,29 @@
+---
+
+- include_vars: Ubuntu.yml
+
+- name: Install python-apt
+  apt: pkg=python-apt
+
+- include: webupd8_for_debian.yml
+  when: "ansible_distribution != 'Ubuntu'"
+
+- include: webupd8_for_ubuntu.yml
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Accept Oracle License
+  debconf: name={{ item }} question='shared/accepted-oracle-license-v1-1' value='true' vtype='select'
+  with_items:
+    - oracle-java6-installer
+    - oracle-java7-installer
+    - oracle-java8-installer
+  when: java_needs_oracle
+
+- name: Install Java packages
+  apt: pkg={{ item }} state=latest
+  with_items: java_packages
+
+- name: Remove unwanted Java packages
+  apt: pkg={{ item }} state=absent
+  with_items: java_packages_to_remove
+  when: java_cleanup

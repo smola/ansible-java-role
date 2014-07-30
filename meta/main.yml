@@ -1,0 +1,23 @@
+---
+galaxy_info:
+  author: Santiago M. Mola
+  description: OpenJDK / Oracle JDK 6, 7 and 8.
+  license: MIT
+  min_ansible_version: 1.5
+  platforms:
+  - name: Ubuntu
+    versions:
+    - all
+  - name: Debian
+    versions:
+    - all
+  - name: EL
+    versions:
+    - all
+  - name: Fedora
+    versions:
+    - all
+  categories:
+  - development
+  - system
+dependencies: []

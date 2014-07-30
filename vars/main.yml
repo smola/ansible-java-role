@@ -1,0 +1,2 @@
+---
+java_needs_oracle: "{{ java_packages | join | search('oracle') }}"

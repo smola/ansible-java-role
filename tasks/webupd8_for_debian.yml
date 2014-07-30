@@ -1,0 +1,12 @@
+---
+
+- name: Install WebUpd8 apt key
+  apt_key: id=EEA14886 state=present
+
+- name: Install WebUpd8 Team Java PPA (for Oracle Java)
+  apt_repository: repo='deb http://ppa.launchpad.net/webupd8team/java/ubuntu precise main' state=present
+  when: java_needs_oracle
+
+- name: Remove WebUpd8 Team Java PPA (for Oracle Java)
+  apt_repository: repo='deb http://ppa.launchpad.net/webupd8team/java/ubuntu precise main' state=present
+  when: java_cleanup and not java_needs_oracle

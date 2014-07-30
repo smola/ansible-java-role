@@ -1,0 +1,9 @@
+---
+
+- name: Install Java packages
+  yum: name={{ item }} state=latest
+  with_items: java_packages
+  when: ansible_os_family == 'RedHat'
+
+
+
