@@ -11,7 +11,7 @@ before_install:
 
 install:
   # Install Ansible.
-  - pip install ansible==1.5.0
+  - pip install ansible==1.6.3
 
 script:
   - "cd tests"

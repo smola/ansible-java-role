@@ -3,7 +3,7 @@ galaxy_info:
   author: Santiago M. Mola
   description: OpenJDK / Oracle JDK 6, 7 and 8.
   license: MIT
-  min_ansible_version: 1.5
+  min_ansible_version: 1.6.3
   platforms:
   - name: Ubuntu
     versions:
