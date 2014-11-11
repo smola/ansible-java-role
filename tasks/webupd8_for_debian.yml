@@ -1,7 +1,7 @@
 ---
 
 - name: Install WebUpd8 apt key
-  apt_key: id=EEA14886 state=present
+  apt_key: id=EEA14886 keyserver='keyserver.ubuntu.com' state=present
 
 - name: Install WebUpd8 Team Java PPA (for Oracle Java)
   apt_repository: repo='deb http://ppa.launchpad.net/webupd8team/java/ubuntu precise main' state=present
