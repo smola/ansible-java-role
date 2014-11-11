@@ -1,9 +1,71 @@
 ---
 
-- name: Install Java packages
-  yum: name={{ item }} state=latest
-  with_items: java_packages
-  when: ansible_os_family == 'RedHat'
+#
+# OpenJDK
+#
 
+- name: (RedHat) Install OpenJDK 6 JDK packages
+  yum: name=java-1.6.0-openjdk-devel state=latest
+  when: java_needs_openjdk_6_jdk
+
+- name: (RedHat) Install OpenJDK 6 JRE packages
+  yum: name=java-1.6.0-openjdk state=latest
+  when: java_needs_openjdk_6_jre or java_needs_openjdk_6_jre_headless
+
+- name: (RedHat) Install OpenJDK 7 JDK packages
+  yum: name=java-1.7.0-openjdk-devel state=latest
+  when: java_needs_openjdk_7_jdk
+
+- name: (RedHat) Install OpenJDK 7 JRE packages
+  yum: name=java-1.7.0-openjdk state=latest
+  when: java_needs_openjdk_7_jre or java_needs_openjdk_7_jre_headless
+
+- name: (RedHat) Install OpenJDK 8 JDK packages
+  yum: name=java-1.8.0-openjdk-devel state=latest
+  when: java_needs_openjdk_8_jdk
+
+- name: (RedHat) Install OpenJDK 8 JRE packages
+  yum: name=java-1.8.0-openjdk state=latest
+  when: java_needs_openjdk_7_jre
+
+- name: (RedHat) Install OpenJDK 8 JRE headless packages
+  yum: name=java-1.8.0-openjdk-headless state=latest
+  when: java_needs_openjdk_7_jre_headless
+
+#
+# Oracle
+#
+
+- name: (RedHat) Install wget (needed for Oracle Java)
+  yum: name=wget state=present
+  when: java_needs_oracle
+
+- name: (RedHat) Check Oracle 7 JDK installation
+  shell: "rpm -q jdk | grep -q jdk-1.7.0"
+  ignore_errors: yes
+  register: cmd_result
+  when: java_needs_oracle_7_jdk
+
+- name: (RedHat) Download Oracle 7 JDK
+  shell: "[[ -e /var/tmp/jdk-7u71-linux-x64.rpm ]] || wget --no-cookies --header 'Cookie: oraclelicense=accept-securebackup-cookie' --no-check-certificate  http://download.oracle.com/otn-pub/java/jdk/7u71-b14/jdk-7u71-linux-x64.rpm -O /var/tmp/jdk-7u71-linux-x64.rpm"
+  when: java_needs_oracle_7_jdk and cmd_result.rc != 0
+
+- name: (RedHat) Install Oracle 7 JDK
+  yum: name=/var/tmp/jdk-7u71-linux-x64.rpm state=present
+  when: java_needs_oracle_7_jdk and cmd_result.rc != 0
+
+- name: (RedHat) Check Oracle 8 JDK installation
+  shell: "rpm -q jdk1.8.0_25 | grep -q jdk1.8.0"
+  ignore_errors: yes
+  register: cmd_result
+  when: java_needs_oracle_8_jdk
+
+- name: (RedHat) Download Oracle 8 JDK
+  shell: "[[ -e /var/tmp/jdk-8u25-linux-x64.rpm ]] || wget --no-cookies --header 'Cookie: oraclelicense=accept-securebackup-cookie' --no-check-certificate  http://download.oracle.com/otn-pub/java/jdk/8u25-b17/jdk-8u25-linux-x64.rpm -O /var/tmp/jdk-8u25-linux-x64.rpm"
+  when: java_needs_oracle_8_jdk and cmd_result.rc != 0
+
+- name: (RedHat) Install Oracle 8 JDK
+  yum: name=/var/tmp/jdk-8u25-linux-x64.rpm state=present
+  when: java_needs_oracle_8_jdk and cmd_result.rc != 0
 
 

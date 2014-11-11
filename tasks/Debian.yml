@@ -2,7 +2,7 @@
 
 - include_vars: Ubuntu.yml
 
-- name: Install python-apt
+- name: (Debian) Install python-apt
   apt: pkg=python-apt
 
 - include: webupd8_for_debian.yml
@@ -11,7 +11,7 @@
 - include: webupd8_for_ubuntu.yml
   when: "ansible_distribution == 'Ubuntu'"
 
-- name: Accept Oracle License
+- name: (Debian) Accept Oracle License
   debconf: name={{ item }} question='shared/accepted-oracle-license-v1-1' value='true' vtype='select'
   with_items:
     - oracle-java6-installer
@@ -19,39 +19,39 @@
     - oracle-java8-installer
   when: java_needs_oracle
 
-- name: Install OpenJDK 6 JDK packages
+- name: (Debian) Install OpenJDK 6 JDK packages
   apt: pkg=openjdk-6-jdk state=latest
   when: java_needs_openjdk_6_jdk
 
-- name: Install OpenJDK 6 JRE packages
+- name: (Debian) Install OpenJDK 6 JRE packages
   apt: pkg=openjdk-6-jre state=latest
   when: java_needs_openjdk_6_jre
 
-- name: Install OpenJDK 6 JRE headless packages
+- name: (Debian) Install OpenJDK 6 JRE headless packages
   apt: pkg=openjdk-6-jre-headless state=latest
   when: java_needs_openjdk_6_jre_headless
 
-- name: Install Oracle 6 JDK packages
+- name: (Debian) Install Oracle 6 JDK packages
   apt: pkg=oracle-java6-installer state=latest
   when: java_needs_oracle_6_jdk or java_needs_oracle_6_jre
 
-- name: Install OpenJDK 7 JDK packages
+- name: (Debian) Install OpenJDK 7 JDK packages
   apt: pkg=openjdk-7-jdk state=latest
   when: java_needs_openjdk_7_jdk
 
-- name: Install OpenJDK 7 JRE packages
+- name: (Debian) Install OpenJDK 7 JRE packages
   apt: pkg=openjdk-7-jre state=latest
   when: java_needs_openjdk_7_jre
 
-- name: Install OpenJDK 7 JRE headless packages
+- name: (Debian) Install OpenJDK 7 JRE headless packages
   apt: pkg=openjdk-7-jre-headless state=latest
   when: java_needs_openjdk_7_jre_headless
 
-- name: Install Oracle 7 JDK packages
+- name: (Debian) Install Oracle 7 JDK packages
   apt: pkg=oracle-java7-installer state=latest
   when: java_needs_oracle_7_jdk or java_needs_oracle_7_jre
 
-- name: Install Oracle 8 JDK packages
+- name: (Debian) Install Oracle 8 JDK packages
   apt: pkg=oracle-java8-installer state=latest
   when: java_needs_oracle_8_jdk or java_needs_oracle_8_jre
 
