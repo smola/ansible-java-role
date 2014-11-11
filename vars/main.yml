@@ -1,2 +1,40 @@
 ---
-java_needs_oracle: "{{ java_packages | join | search('oracle') }}"
+java_needs_oracle: "{{ java_packages | join(' ') | search('oracle') }}"
+
+java_needs_openjdk_6_jdk: "{{ java_packages | join(' ') | search('openjdk-6-jdk') }}"
+java_needs_openjdk_6_jre: "{{ java_packages | join(' ') | search('openjdk-6-jre') }}"
+java_needs_openjdk_6_jre_headless: "{{ java_packages | join(' ') | search('openjdk-6-jre-headless') }}"
+java_needs_oracle_6_jdk: "{{ java_packages | join(' ') | search('oracle-6-jdk') }}"
+java_needs_oracle_6_jre: "{{ java_packages | join(' ') | search('oracle-6-jre') }}"
+
+java_needs_openjdk_7_jdk: "{{ java_packages | join(' ') | search('openjdk-7-jdk') }}"
+java_needs_openjdk_7_jre: "{{ java_packages | join(' ') | search('openjdk-7-jre') }}"
+java_needs_openjdk_7_jre_headless: "{{ java_packages | join(' ') | search('openjdk-7-jre-headless') }}"
+java_needs_oracle_7_jdk: "{{ java_packages | join(' ') | search('oracle-7-jdk') }}"
+java_needs_oracle_7_jre: "{{ java_packages | join(' ') | search('oracle-7-jre') }}"
+
+java_needs_openjdk_8_jdk: "{{ java_packages | join(' ') | search('openjdk-8-jdk') }}"
+java_needs_openjdk_8_jre: "{{ java_packages | join(' ') | search('openjdk-8-jre') }}"
+java_needs_openjdk_8_jre_headless: "{{ java_packages | join(' ') | search('openjdk-8-jre-headless') }}"
+java_needs_oracle_8_jdk: "{{ java_packages | join(' ') | search('oracle-8-jdk') }}"
+java_needs_oracle_8_jre: "{{ java_packages | join(' ') | search('oracle-8-jre') }}"
+
+java_default_openjdk_6_jdk: "{{ java_packages | join(' ') | search('^openjdk-6-jdk') }}"
+java_default_openjdk_6_jre: "{{ java_packages | join(' ') | search('^openjdk-6-jre') }}"
+java_default_openjdk_6_jre_headless: "{{ java_packages | join(' ') | search('^openjdk-6-jre-headless') }}"
+java_default_oracle_6_jdk: "{{ java_packages | join(' ') | search('^oracle-6-jdk') }}"
+java_default_oracle_6_jre: "{{ java_packages | join(' ') | search('^oracle-6-jre') }}"
+
+java_default_openjdk_7_jdk: "{{ java_packages | join(' ') | search('^openjdk-7-jdk') }}"
+java_default_openjdk_7_jre: "{{ java_packages | join(' ') | search('^openjdk-7-jre') }}"
+java_default_openjdk_7_jre_headless: "{{ java_packages | join(' ') | search('^openjdk-7-jre-headless') }}"
+java_default_oracle_7_jdk: "{{ java_packages | join(' ') | search('^oracle-7-jdk') }}"
+java_default_oracle_7_jre: "{{ java_packages | join(' ') | search('^oracle-7-jre') }}"
+
+java_default_openjdk_8_jdk: "{{ java_packages | join(' ') | search('^openjdk-8-jdk') }}"
+java_default_openjdk_8_jre: "{{ java_packages | join(' ') | search('^openjdk-8-jre') }}"
+java_default_openjdk_8_jre_headless: "{{ java_packages | join(' ') | search('^openjdk-8-jre-headless') }}"
+java_default_oracle_8_jdk: "{{ java_packages | join(' ') | search('^oracle-8-jdk') }}"
+java_default_oracle_8_jre: "{{ java_packages | join(' ') | search('^oracle-8-jre') }}"
+
+

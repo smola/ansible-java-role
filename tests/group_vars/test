@@ -1,5 +1,11 @@
 ---
 java_packages:
-  - oracle-java8-set-default
-  - oracle-java8-installer
+  - oracle-6-jdk
+  - oracle-7-jdk
+  - oracle-8-jdk
   - openjdk-6-jdk
+  - openjdk-6-jre
+  - openjdk-6-jre-headless
+  - openjdk-7-jdk
+  - openjdk-7-jre
+  - openjdk-7-jre-headless
