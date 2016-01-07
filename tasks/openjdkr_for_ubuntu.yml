@@ -1,0 +1,12 @@
+---
+- name: Install OpenJDK builds PPA
+  apt_repository: repo='ppa:openjdk-r/ppa' state=present
+  when: _java_openjdk_8 and _java_ubuntu_needs_openjdk_8_ppa
+  register: webupd8ppa
+  until: webupd8ppa|success
+  retries: 5
+  delay: 10
+
+- name: Remove OpenJDK builds PPA 
+  apt_repository: repo='ppa:openjdk-r/ppa' state=present
+  when: not _java_ubuntu_needs_openjdk_8_ppa

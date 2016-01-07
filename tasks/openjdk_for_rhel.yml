@@ -1,0 +1,38 @@
+---
+
+- name: Install OpenJDK 6
+  yum: pkg=java-1.6.0-openjdk state=latest
+  when: _java_openjdk_6
+  tags:
+    - install
+
+- name: Uninstall OpenJDK 6
+  yum: pkg=java-1.6.0-openjdk state=absent
+  when: not _java_openjdk_6
+  tags:
+    - uninstall
+
+- name: Install OpenJDK 7
+  yum: pkg=java-1.7.0-openjdk state=latest
+  when: _java_openjdk_7
+  tags:
+    - install
+
+- name: Uninstall OpenJDK 7
+  yum: pkg=java-1.7.0-openjdk state=absent
+  when: not _java_openjdk_7
+  tags:
+    - uninstall
+
+- name: Install OpenJDK 8
+  yum: pkg=java-1.8.0-openjdk state=latest
+  when: _java_openjdk_8
+  tags:
+    - install
+
+- name: Uninstall OpenJDK 8
+  yum: pkg=java-1.8.0-openjdk state=absent
+  when: not _java_openjdk_8
+  tags:
+    - uninstall
+

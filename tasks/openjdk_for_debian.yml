@@ -1,0 +1,40 @@
+---
+
+- name: Install OpenJDK 6
+  apt: pkg=openjdk-6-jdk state=latest
+  when: _java_openjdk_6
+  tags:
+    - install
+
+- name: Uninstall OpenJDK 6
+  apt: pkg=openjdk-6-jdk state=absent
+  when: not _java_openjdk_6
+  tags:
+    - uninstall
+
+- name: Install OpenJDK 7
+  apt: pkg=openjdk-7-jdk state=latest
+  when: _java_openjdk_7
+  tags:
+    - install
+
+- name: Uninstall OpenJDK 7
+  apt: pkg=openjdk-7-jdk state=absent
+  when: not _java_openjdk_7
+  tags:
+    - uninstall
+
+- include: openjdkr_for_ubuntu.yml
+
+- name: Install OpenJDK 8
+  apt: pkg=openjdk-8-jdk state=latest
+  when: _java_openjdk_8
+  tags:
+    - install
+
+- name: Uninstall OpenJDK 8
+  apt: pkg=openjdk-8-jdk state=absent
+  when: not _java_openjdk_8
+  tags:
+    - uninstall
+

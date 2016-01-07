@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Santiago M. Mola
-  description: OpenJDK / Oracle JDK 6, 7 and 8.
+  description: OpenJDK / Oracle JDK 6, 7, 8 and 9.
   license: MIT
   min_ansible_version: 1.6.3
   platforms:

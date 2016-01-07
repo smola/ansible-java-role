@@ -1,2 +1,14 @@
 ---
-java_needs_oracle: "{{ java_packages | join | search('oracle') }}"
+
+_java_packages_string: "{{ java_packages | join(',') }}"
+_java_needs_oracle: "{{ _java_packages_string | search('oracle') }}"
+_java_openjdk_6: "{{ _java_packages_string | search ('openjdk-6') }}"
+_java_openjdk_7: "{{ _java_packages_string | search ('openjdk-7') }}"
+_java_openjdk_8: "{{ _java_packages_string | search ('openjdk-8') }}"
+_java_openjdk_9: "{{ _java_packages_string | search ('openjdk-9') }}"
+_java_oracle_6: "{{ _java_packages_string | search ('oracle-6') }}"
+_java_oracle_7: "{{ _java_packages_string | search ('oracle-7') }}"
+_java_oracle_8: "{{ _java_packages_string | search ('oracle-8') }}"
+_java_oracle_9: "{{ _java_packages_string | search ('oracle-9') }}"
+
+_java_ubuntu_needs_openjdk_8_ppa: "{{ansible_distribution}}-{{ansible_distribution_version}} == 'Ubuntu-14.04'"

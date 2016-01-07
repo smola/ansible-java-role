@@ -1,0 +1,68 @@
+---
+
+- include: webupd8_for_debian.yml
+  when: "ansible_distribution != 'Ubuntu'"
+
+
+- include: webupd8_for_ubuntu.yml
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Accept Oracle License
+  debconf: name={{ item }} question='shared/accepted-oracle-license-v1-1' value='true' vtype='select'
+  with_items:
+    - oracle-java6-installer
+    - oracle-java7-installer
+    - oracle-java8-installer
+    - oracle-java9-installer
+  when: _java_needs_oracle
+  tags:
+    - install
+
+- name: Install Oracle JDK 6
+  apt: pkg=oracle-java6-installer state=latest
+  when: _java_oracle_6
+  tags:
+    - install
+
+- name: Uninstall Oracle JDK 6
+  apt: pkg=oracle-java6-installer state=absent
+  when: not _java_oracle_6
+  tags:
+    - uninstall
+
+- name: Install Oracle JDK 7
+  apt: pkg=oracle-java7-installer state=latest
+  when: _java_oracle_7
+  tags:
+    - install
+
+- name: Uninstall Oracle JDK 7
+  apt: pkg=oracle-java7-installer state=absent
+  when: not _java_oracle_7
+  tags:
+    - uninstall
+
+- name: Install Oracle JDK 8
+  apt: pkg=oracle-java8-installer state=latest
+  when: _java_oracle_8
+  tags:
+    - install
+
+- name: Uninstall Oracle JDK 8
+  apt: pkg=oracle-java8-installer state=absent
+  when: not _java_oracle_8
+  tags:
+    - uninstall
+
+- name: Install Oracle JDK 9
+  apt: pkg=oracle-java9-installer state=latest
+  when: _java_oracle_9
+  tags:
+    - install
+
+- name: Uninstall Oracle JDK 9
+  apt: pkg=oracle-java9-installer state=absent
+  when: not _java_oracle_9
+  tags:
+    - uninstall
+
