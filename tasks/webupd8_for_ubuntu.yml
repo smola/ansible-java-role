@@ -1,6 +1,6 @@
 ---
 - name: Install WebUpd8 Team Java PPA (for Oracle Java)
-  apt_repository: repo='ppa:webupd8team/java' state=present
+  apt_repository: repo='ppa:webupd8team/java' state=present mode=0644
   when: java_needs_oracle
   register: webupd8ppa
   until: webupd8ppa|success
@@ -8,5 +8,5 @@
   delay: 10
 
 - name: Remove WebUpd8 Team Java PPA (for Oracle Java)
-  apt_repository: repo='ppa:webupd8team/java' state=present
+  apt_repository: repo='ppa:webupd8team/java' state=present mode=0644
   when: java_cleanup and not java_needs_oracle
