@@ -21,9 +21,9 @@
 
 - name: Install Java packages
   apt: pkg={{ item }} state=latest
-  with_items: java_packages
+  with_items: "{{ java_packages }}"
 
 - name: Remove unwanted Java packages
   apt: pkg={{ item }} state=absent
-  with_items: java_packages_to_remove
+  with_items: "{{ java_packages_to_remove }}"
   when: java_cleanup
